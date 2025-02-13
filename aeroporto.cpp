@@ -4,6 +4,7 @@
 int main(){
     constexpr int MAX_PRENOTAZIONI = 100;
     Prenotazione prenotazioni[MAX_PRENOTAZIONI];
+    int numeroPrenotazioniInserite = 0;
     bool stop = false;
     do{   
         int scelta = -1;
@@ -20,12 +21,18 @@ int main(){
 
         switch(scelta){
             case 0:{
+                 stampa(prenotazioni, numeroPrenotazioniInserite);
                 break;
             }
             case 1:{
+            add(prenotazioni, MAX_PRENOTAZIONI, numeroPrenotazioniInserite);
                 break;
             }
             case 2:{
+                 int unsigned index = 0;
+                 cout << "Inserisci il numero della prenotazione da modificare" << endl;
+                 cin >> index;
+                 modifica(prenotazioni, MAX_PRENOTAZIONI, index);
                 break;
             }
             case 3:{
