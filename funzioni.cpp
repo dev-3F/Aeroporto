@@ -61,3 +61,45 @@ void stampa(Prenotazione prenotazioni[], const int numElementi) {
   }
   cout << "Stampa Prenotazioni terminata" << endl << endl;
 }
+
+void elimina(Prenotazione p[], int numElementi){
+  int idVolo, shiftNum;
+  string idCliente;
+  cout << "Inserisci l'ID del volo";
+  cin >> idVolo;
+  cout << "Inserisci l'ID del cliente";
+  cin >> idCliente;
+  for(int i = 0; i<numElementi; ++i){
+    if(p[i].getIdCliente() == idCliente && p[i].getIdVolo() == idVolo){
+      p[i] = Prenotazione{};
+      --numElementi;
+      shiftNum = i;
+      break;
+    }
+  }
+
+  for(int i = shiftNum; i < numElementi+1; ++i){
+    Prenotazione temp = p[i];
+    p[i] = p[i+1];
+    p[i+1] = temp;
+  }
+}
+
+void stampaTutte(Prenotazione p[], const int numElementi){
+  cout << "Stampa Prenotazioni" << endl;
+  for (int i = 0; i < numElementi; ++i) {
+    cout << p[i] << endl;
+  }
+  cout << "Stampa Prenotazioni terminata" << endl << endl;
+}
+
+float incassoVolo(Prenotazione p[], const int numElementi, const int idVolo){
+  float incassoTot;
+  for(int i = 0; i < numElementi; ++i){
+    if(p[i].getIdVolo() == idVolo){
+      incassoTot += p[i].getIdVolo();
+    }
+  }
+
+  return incassoTot;
+}
